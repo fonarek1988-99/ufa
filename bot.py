@@ -43,7 +43,7 @@ if not os.path.exists(CATALOG_FILE):
             "2000_5000": [],
             "5000_10000": [],
             "10000_20000": [],
-            "10000_100000": []
+            "👑 VIP букеты": []
         }, f, ensure_ascii=False, indent=4)
 
 if not os.path.exists(ORDERS_FILE):
@@ -210,7 +210,7 @@ async def add_start(callback: CallbackQuery, state: FSMContext):
         "1. 2000_5000\n"
         "2. 5000_10000\n"
         "3. 10000_20000\n"
-        "4. 20000_100000"
+        "4. 👑 VIP букеты"
     )
 
     await state.set_state(AddFlower.category)
@@ -224,7 +224,7 @@ async def add_category(message: Message, state: FSMContext):
         "1": "2000_5000",
         "2": "5000_10000",
         "3": "10000_20000",
-        "4": "20000_100000"
+        "4": "👑 VIP букеты"
     }
 
     if message.text not in categories:
