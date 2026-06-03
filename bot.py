@@ -43,7 +43,7 @@ if not os.path.exists(CATALOG_FILE):
             "2000_5000": [],
             "5000_10000": [],
             "10000_20000": [],
-            "👑 VIP букеты": []
+            "10000_100000": []
         }, f, ensure_ascii=False, indent=4)
 
 if not os.path.exists(ORDERS_FILE):
@@ -102,54 +102,183 @@ class ChangePrice(StatesGroup):
     number = State()
     new_price = State()
 
+
+
 # ================= КНОПКИ =================
 
 def main_menu():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="💐 Букеты 2000-5000₽",
-                    callback_data="cat|2000_5000"
-                )
-            ],
 
-            [
-                InlineKeyboardButton(
-                    text="🌸 Букеты 5000-10000₽",
-                    callback_data="cat|5000_10000"
-                )
-            ],
+            [InlineKeyboardButton(
+                text="💐 Букеты",
+                callback_data="menu|bouquets"
+            )],
 
-            [
-                InlineKeyboardButton(
-                    text="🌹 Букеты 10000-20000₽",
-                    callback_data="cat|10000_20000"
-                )
-            ],
+            [InlineKeyboardButton(
+                text="🎈 Шары",
+                callback_data="cat|balls"
+            )],
 
-            [
-                InlineKeyboardButton(
-                    text="👑 VIP букеты",
-                    callback_data="cat|vip"
-                )
-            ]
+            [InlineKeyboardButton(
+                text="🍭 Сладкие букеты",
+                callback_data="cat|sweet_bouquets"
+            )],
+
+            [InlineKeyboardButton(
+                text="🧸 Мягкие игрушки",
+                callback_data="cat|toys"
+            )],
+
+            [InlineKeyboardButton(
+                text="🌸 Цветы поштучно",
+                callback_data="menu|flowers"
+            )],
+
+            [InlineKeyboardButton(
+                text="📦 Цветы оптом",
+                callback_data="menu|opt"
+            )]
+
         ]
     )
+
+
+def bouquets_menu():
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+
+            [InlineKeyboardButton(
+                text="💐 Букеты 2000-5000₽",
+                callback_data="cat|2000_5000"
+            )],
+
+            [InlineKeyboardButton(
+                text="🌸 Букеты 5000-10000₽",
+                callback_data="cat|5000_10000"
+            )],
+
+            [InlineKeyboardButton(
+                text="🌹 Букеты 10000-20000₽",
+                callback_data="cat|10000_20000"
+            )],
+
+            [InlineKeyboardButton(
+                text="👑 VIP букеты",
+                callback_data="cat|vip"
+            )],
+
+            [InlineKeyboardButton(
+                text="🏠 Главное меню",
+                callback_data="home"
+            )]
+
+        ]
+    )
+
+
+def flowers_menu():
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+
+            [InlineKeyboardButton(text="🌹 Розы", callback_data="cat|flowers_roses")],
+            [InlineKeyboardButton(text="🌷 Тюльпаны", callback_data="cat|flowers_tulips")],
+            [InlineKeyboardButton(text="🌸 Пионы", callback_data="cat|flowers_peonies")],
+            [InlineKeyboardButton(text="🌼 Ромашки", callback_data="cat|flowers_daisies")],
+            [InlineKeyboardButton(text="🌺 Лилии", callback_data="cat|flowers_lilies")],
+            [InlineKeyboardButton(text="🌻 Подсолнухи", callback_data="cat|flowers_sunflowers")],
+            [InlineKeyboardButton(text="💐 Хризантемы", callback_data="cat|flowers_chrysanthemums")],
+            [InlineKeyboardButton(text="🪻 Лаванда", callback_data="cat|flowers_lavender")],
+            [InlineKeyboardButton(text="🌹 Гвоздики", callback_data="cat|flowers_carnations")],
+            [InlineKeyboardButton(text="🌸 Орхидеи", callback_data="cat|flowers_orchids")],
+            [InlineKeyboardButton(text="🌼 Астры", callback_data="cat|flowers_asters")],
+            [InlineKeyboardButton(text="🌺 Ирисы", callback_data="cat|flowers_irises")],
+            [InlineKeyboardButton(text="🌷 Нарциссы", callback_data="cat|flowers_narcissus")],
+            [InlineKeyboardButton(text="🌸 Сирень", callback_data="cat|flowers_lilac")],
+            [InlineKeyboardButton(text="🌻 Герберы", callback_data="cat|flowers_gerberas")],
+
+            [InlineKeyboardButton(
+                text="🏠 Главное меню",
+                callback_data="home"
+            )]
+
+        ]
+    )
+
+
+def opt_menu():
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+
+            [InlineKeyboardButton(text="🌹 Розы", callback_data="cat|opt_roses")],
+            [InlineKeyboardButton(text="🌷 Тюльпаны", callback_data="cat|opt_tulips")],
+            [InlineKeyboardButton(text="🌸 Пионы", callback_data="cat|opt_peonies")],
+            [InlineKeyboardButton(text="🌼 Ромашки", callback_data="cat|opt_daisies")],
+            [InlineKeyboardButton(text="🌺 Лилии", callback_data="cat|opt_lilies")],
+            [InlineKeyboardButton(text="🌻 Подсолнухи", callback_data="cat|opt_sunflowers")],
+            [InlineKeyboardButton(text="💐 Хризантемы", callback_data="cat|opt_chrysanthemums")],
+            [InlineKeyboardButton(text="🪻 Лаванда", callback_data="cat|opt_lavender")],
+            [InlineKeyboardButton(text="🌹 Гвоздики", callback_data="cat|opt_carnations")],
+            [InlineKeyboardButton(text="🌸 Орхидеи", callback_data="cat|opt_orchids")],
+            [InlineKeyboardButton(text="🌼 Астры", callback_data="cat|opt_asters")],
+            [InlineKeyboardButton(text="🌺 Ирисы", callback_data="cat|opt_irises")],
+            [InlineKeyboardButton(text="🌷 Нарциссы", callback_data="cat|opt_narcissus")],
+            [InlineKeyboardButton(text="🌸 Сирень", callback_data="cat|opt_lilac")],
+            [InlineKeyboardButton(text="🌻 Герберы", callback_data="cat|opt_gerberas")],
+
+            [InlineKeyboardButton(
+                text="🏠 Главное меню",
+                callback_data="home"
+            )]
+
+        ]
+    )
+
 
 def admin_menu():
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="➕ Добавить букет", callback_data="admin_add")],
-            [InlineKeyboardButton(text="💰 Изменить цену", callback_data="admin_price")],
-            [InlineKeyboardButton(text="✉️ Ответить", callback_data="admin_reply")],
-            [InlineKeyboardButton(text="❌ Удалить букет", callback_data="admin_delete")],
-            [InlineKeyboardButton(text="📦 Заявки", callback_data="admin_orders")],
-            [InlineKeyboardButton(text="👥 Пользователи", callback_data="admin_users")],
-            [InlineKeyboardButton(text="📢 Рассылка", callback_data="admin_broadcast")]
+
+            [InlineKeyboardButton(
+                text="➕ Добавить товар",
+                callback_data="admin_add"
+            )],
+
+            [InlineKeyboardButton(
+                text="💰 Изменить цену",
+                callback_data="admin_price"
+            )],
+
+            [InlineKeyboardButton(
+                text="❌ Удалить товар",
+                callback_data="admin_delete"
+            )],
+
+            [InlineKeyboardButton(
+                text="📦 Заявки",
+                callback_data="admin_orders"
+            )],
+
+            [InlineKeyboardButton(
+                text="👥 Пользователи",
+                callback_data="admin_users"
+            )],
+
+            [InlineKeyboardButton(
+                text="📢 Рассылка",
+                callback_data="admin_broadcast"
+            )],
+
+            [InlineKeyboardButton(
+                text="✉️ Ответить",
+                callback_data="admin_reply"
+            )]
+
         ]
     )
+    
 
+# ================= АДМИН =================
 # ================= СТАРТ =================
 
 @dp.message(Command("start"))
@@ -167,27 +296,10 @@ async def start_handler(message: Message):
 
         save_users(users)
 
-        username = (
-            f"@{message.from_user.username}"
-            if message.from_user.username
-            else "Без username"
-        )
-
-        await bot.send_message(
-            ADMIN_ID,
-            f"🆕 Новый пользователь\n\n"
-            f"👤 Имя: {message.from_user.first_name}\n"
-            f"🔗 Username: {username}\n"
-            f"🆔 ID: {message.from_user.id}"
-        )
-
     await message.answer(
         "🌸 Добро пожаловать в магазин цветов!",
         reply_markup=main_menu()
     )
-
-# ================= АДМИН =================
-
 @dp.message(Command("admin"))
 async def admin_panel(message: Message):
 
@@ -207,10 +319,43 @@ async def add_start(callback: CallbackQuery, state: FSMContext):
 
     await callback.message.answer(
         "Введите номер категории:\n\n"
-        "1. 2000_5000\n"
-        "2. 5000_10000\n"
-        "3. 10000_20000\n"
-        "4. 👑 VIP букеты"
+        "1. Букеты 2000-5000\n"
+	"2. Букеты 5000-10000\n"
+	"3. Букеты 10000-20000\n"
+	"4. VIP букеты\n"
+	"5. Шары\n"
+	"6. Сладкие букеты\n"
+	"7. Мягкие игрушки\n"
+	"8. Розы\n"
+	"9. Тюльпаны\n"
+	"10. Пионы\n"
+	"11. Ромашки\n"
+	"12. Лилии\n"
+	"13. Подсолнухи\n"
+	"14. Хризантемы\n"
+	"15. Лаванда\n"
+	"16. Гвоздики\n"
+	"17. Орхидеи\n"
+	"18. Астры\n"
+	"19. Ирисы\n"
+	"20. Нарциссы\n"
+	"21. Сирень\n"
+	"22. Герберы\n"
+	"23. ОПТ Розы\n"
+	"24. ОПТ Тюльпаны\n"
+	"25. ОПТ Пионы\n"
+	"26. ОПТ Ромашки\n"
+	"27. ОПТ Лилии\n"
+	"28. ОПТ Подсолнухи\n"
+	"29. ОПТ Хризантемы\n"
+	"30. ОПТ Лаванда\n"
+	"31. ОПТ Гвоздики\n"
+	"32. ОПТ Орхидеи\n"
+	"33. ОПТ Астры\n"
+	"34. ОПТ Ирисы\n"
+	"35. ОПТ Нарциссы\n"
+	"36. ОПТ Сирень\n"
+	"37. ОПТ Герберы"
     )
 
     await state.set_state(AddFlower.category)
@@ -224,7 +369,40 @@ async def add_category(message: Message, state: FSMContext):
         "1": "2000_5000",
         "2": "5000_10000",
         "3": "10000_20000",
-        "4": "👑 VIP букеты"
+        "4": "vip",
+	"5": "balls",
+	"6": "sweet_bouquets",
+	"7": "toys",
+	"8": "flowers_roses",
+	"9": "flowers_tulips",
+	"10": "flowers_peonies",
+	"11": "flowers_daisies",
+	"12": "flowers_lilies",
+	"13": "flowers_sunflowers",
+	"14": "flowers_chrysanthemums",
+	"15": "flowers_lavender",
+	"16": "flowers_carnations",
+	"17": "flowers_orchids",
+	"18": "flowers_asters",
+	"19": "flowers_irises",
+	"20": "flowers_narcissus",
+	"21": "flowers_lilac",
+	"22": "flowers_gerberas",
+	"23": "opt_roses",
+	"24": "opt_tulips",
+	"25": "opt_peonies",
+	"26": "opt_daisies",
+	"27": "opt_lilies",
+	"28": "opt_sunflowers",
+	"29": "opt_chrysanthemums",
+	"30": "opt_lavender",
+	"31": "opt_carnations",
+	"32": "opt_orchids",
+	"33": "opt_asters",
+	"34": "opt_irises",
+	"35": "opt_narcissus",
+	"36": "opt_lilac",
+	"37": "opt_gerberas"
     }
 
     if message.text not in categories:
@@ -331,6 +509,38 @@ def flower_keyboard(category, index, total):
     ])
 
     return InlineKeyboardMarkup(inline_keyboard=buttons)
+
+@dp.callback_query(F.data == "menu|bouquets")
+async def bouquets_menu_open(callback: CallbackQuery):
+
+    await callback.message.answer(
+        "💐 Выберите категорию букетов:",
+        reply_markup=bouquets_menu()
+    )
+
+    await callback.answer()
+
+
+@dp.callback_query(F.data == "menu|flowers")
+async def flowers_menu_open(callback: CallbackQuery):
+
+    await callback.message.answer(
+        "🌸 Цветы поштучно:",
+        reply_markup=flowers_menu()
+    )
+
+    await callback.answer()
+
+
+@dp.callback_query(F.data == "menu|opt")
+async def opt_menu_open(callback: CallbackQuery):
+
+    await callback.message.answer(
+        "📦 Цветы оптом:",
+        reply_markup=opt_menu()
+    )
+
+    await callback.answer()
 
 @dp.callback_query(lambda c: c.data.startswith("cat|"))
 async def open_category(callback: CallbackQuery):
@@ -742,4 +952,8 @@ async def reply_send(message: Message, state: FSMContext):
 
 if __name__ == "__main__":
     print("Бот запущен...")
-    asyncio.run(dp.start_polling(bot))
+
+    try:
+        asyncio.run(dp.start_polling(bot))
+    except Exception as e:
+        print("ОШИБКА:", e)
