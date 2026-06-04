@@ -286,8 +286,9 @@ async def start_handler(message: Message):
 
     users = load_users()
 
-    if message.from_user.id not in [u["id"] for u in users]:
+    is_new = message.from_user.id not in [u["id"] for u in users]
 
+    if is_new:
         users.append({
             "id": message.from_user.id,
             "name": message.from_user.first_name,
@@ -295,6 +296,19 @@ async def start_handler(message: Message):
         })
 
         save_users(users)
+
+        status = "🆕 НОВЫЙ"
+    else:
+        status = "♻️ ПОВТОРНЫЙ"
+
+    await bot.send_message(
+        ADMIN_ID,
+        f"{status} запуск бота\n\n"
+        f"👤 {message.from_user.first_name}\n"
+        f"🔗 @{message.from_user.username if message.from_user.username else 'нет'}\n"
+        f"🆔 {message.from_user.id}\n"
+        f"👥 Всего пользователей: {len(users)}"
+    )
 
     await message.answer(
         "🌸 Добро пожаловать в магазин цветов!",
